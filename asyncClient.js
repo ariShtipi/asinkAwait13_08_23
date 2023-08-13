@@ -16,20 +16,24 @@ buttonGet5Users.addEventListener("click", () => {
 
 async function getRandomUser() {
   try {
+    const textUser = document.createElement("p");
+    textUser.innerText = document.body.appendChild(textUser);
+    const imgUser = document.createElement("img");
+    imgUser.innerText = document.body.appendChild(imgUser);
+
     const response = await fetch("https://randomuser.me/api");
     if (response.ok) {
       const data = await response.json();
-      console.log(
+      textUser.innerText =
         data.results[0].name.first +
-          "  " +
-          data.results[0].name.last +
-          "  " +
-          data.results[0].email +
-          "  " +
-          data.results[0].registered.age +
-          "  " +
-          data.results[0].picture.thumbnail
-      );
+        "  " +
+        data.results[0].name.last +
+        "  " +
+        data.results[0].email +
+        "  " +
+        data.results[0].registered.age;
+
+      imgUser.src = data.results[0].picture.thumbnail;
     } else {
       throw new Error("error");
     }
